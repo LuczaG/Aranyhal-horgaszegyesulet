@@ -1,50 +1,49 @@
-<h1>{{title}}</h1>
-<form *ngIf="!loading" [formGroup]="form" (ngSubmit)="onSubmit()">
+<h1>Felhasználó adatai</h1>
+<form *ngIf="!loading" [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
     <div class="row">
         <div class="col mb-3">
-            <label class="form-label">First Name</label>
+            <label class="form-label">Vezetéknév</label>
             <input type="text" formControlName="firstName" class="form-control"
                 [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
             <div class="invalid-feedback" *ngIf="submitted && f.firstName.errors">
-                <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                <div *ngIf="f.firstName.errors.required">Vezetéknév szükséges</div>
             </div>
         </div>
         <div class="col mb-3">
-            <label class="form-label">Last Name</label>
+            <label class="form-label">Keresztnév</label>
             <input type="text" formControlName="lastName" class="form-control"
                 [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }">
             <div class="invalid-feedback" *ngIf="submitted && f.lastName.errors">
-                <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                <div *ngIf="f.lastName.errors.required">Keresztnév szükséges</div>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col mb-3">
-            <label class="form-label">Username</label>
+            <label class="form-label">Felhasználónév szükséges</label>
             <input type="text" formControlName="username" class="form-control"
                 [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
             <div class="invalid-feedback" *ngIf="submitted && f.username.errors">
-                <div *ngIf="f.username.errors.required">Username is required</div>
+                <div *ngIf="f.username.errors.required">Felhasználónév szükséges</div>
             </div>
         </div>
         <div class="col mb-3">
             <label class="form-label">
-                Password
-                <em *ngIf="id">(Leave blank to keep the same password)</em>
+                Jelszó
+                <em *ngIf="id">(Jelszavad megtartásához hagyd üresen)</em>
             </label>
             <input type="password" formControlName="password" class="form-control"
                 [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
             <div class="invalid-feedback" *ngIf="submitted && f.password.errors">
-                <div *ngIf="f.password.errors.required">Password is required</div>
                 <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
             </div>
         </div>
         <div class="mb-3">
-            <button class="btn btn-primary" [disabled]="submitting">
+            <button class="save" [disabled]="submitting">
                 <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
-                Save
+                Mentés
             </button>
-            <a routerLink="/users" class="btn btn-link">Cancel</a>
+            <a routerLink="/users" class="cancel">Mégse</a>
         </div>
     </div>
 </form>

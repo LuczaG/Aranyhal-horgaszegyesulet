@@ -1,19 +1,28 @@
 <!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark px-3" *ngIf="user">
+<nav class="navbar navbar-expand navbar-light px-3" style="background: #009459;">
   <div class="navbar-nav">
+    <a class="navbar-brand" href="#">
+      <img src="./assets/img/aranyhal.png" alt="Aranyahal Horgászegyesület" style="width: 50px;">
+    </a>
     <a class="nav-item nav-link" routerLink="/" routerLinkActive="active"
        [routerLinkActiveOptions]="{exact: true}">
-       Home
+       Főoldal
+    </a>
+    <a class="nav-item nav-link" routerLink="/" routerLinkActive="active">
+      Fogási Napló
     </a>
     <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">
-      Users
+      Felhasználók
     </a>
-    <button class="btn btn-link nav-item nav-link" (click)="logout();">Logout</button>
+    <a class="nav-item nav-link" routerLink="/login" routerLinkActive="active">
+      Bejelentkezés
+    </a>
+    <button class="btn btn-link nav-item nav-link" (click)="logout();">kijelentkezés</button>
   </div>
 </nav>
 
 <!-- main app container -->
-<div class="app-container" [ngClass]="{ 'bg-light': user }">
+<div class="app-container">
   <app-alert></app-alert>
   <router-outlet></router-outlet>
 </div>

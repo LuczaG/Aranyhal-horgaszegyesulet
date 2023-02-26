@@ -6,14 +6,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { AlertComponent } from './_components';
+import { AlertComponent } from './_components/alert/alert.components';
 import { JwtInterceptor, ErrorInterceptor, fakeBackendProvider } from './_helpers';
+import { CatchesComponent } from './_components/catches/catches.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AlertComponent,
-    HomeComponent
+    HomeComponent,
+    CatchesComponent
   ],
   imports: [
     BrowserModule,

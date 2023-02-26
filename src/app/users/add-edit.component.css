@@ -1,0 +1,14 @@
+.save {
+    margin-right: 10px;
+    padding: 8px;
+    background: #009459;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+.cancel {
+    margin-left: 10px;
+    color: #009459;
+    text-decoration: none;
+}
