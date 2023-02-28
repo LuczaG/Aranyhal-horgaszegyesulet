@@ -9,13 +9,16 @@ import { HomeComponent } from './home/home.component';
 import { AlertComponent } from './_components/alert/alert.components';
 import { JwtInterceptor, ErrorInterceptor, fakeBackendProvider } from './_helpers';
 import { CatchesComponent } from './_components/catches/catches.component';
+import { FooterComponent, NavbarComponent } from './_components';
 
 @NgModule({
   declarations: [
     AppComponent,
     AlertComponent,
     HomeComponent,
-    CatchesComponent
+    CatchesComponent,
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

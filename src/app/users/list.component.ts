@@ -20,7 +20,7 @@ export class ListComponent implements OnInit {
 
   deleteUser(id: string) {
     const user = this.users.find(x => x.id === id);
-    confirm("Are you sure, you want to delete this user?")
+    confirm("Biztos törölni akarod a felhasználót?")
     ? user.isDeleted = true && this.accountService.delete(id)
     .pipe(first())
     .subscribe(() => this.users = this.users.filter(x => x.id !==id))
