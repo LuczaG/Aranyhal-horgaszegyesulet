@@ -16,7 +16,7 @@
       <a class="nav-item nav-link" *ngIf="!user" routerLink="/login" routerLinkActive="active">
         Bejelentkezés
       </a>
-      <a class="nav-item nav-link" *ngIf="user" >
+      <a class="nav-item nav-link username" *ngIf="user" >
         {{user.username}}
       </a>
       <!-- <button class="btn btn-link nav-item nav-link" (click)="logout();">kijelentkezés</button> -->
