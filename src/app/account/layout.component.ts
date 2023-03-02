@@ -11,7 +11,6 @@ export class LayoutComponent {
     private router: Router,
     private accountService: AccountService
   ) {
-
     //továbbítás a home oldalra, ha be vagyunk jelentkezve.
     if (this.accountService.userValue) {
       this.router.navigate(['/'])

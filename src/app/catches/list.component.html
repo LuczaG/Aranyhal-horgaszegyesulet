@@ -1,0 +1,34 @@
+<h1>Fogási napló</h1>
+<a routerLink="add" class="btn btn-sm btn-success mb-2">Fogások adminisztrálása</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 20%;">Év</th>
+            <th style="width: 20%;">Ponty</th>
+            <th style="width: 20%;">Süllő</th>
+            <th style="width: 20%;">Harcsa</th>
+            <th style="width: 20%;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let catch of catches">
+            <td>{{catch.ev}}</td>
+            <td>{{catch.ponty}}</td>
+            <td>{{catch.sullo}}</td>
+            <td>{{catch.harcsa}}</td>
+            <td style="white-space: nowrap;">
+                <a routerLink="edit/{{catch.id}}" class="btn btn-sm btn-primary me-1">Edit</a>
+                <button (click)="deleteUser(catch.id)" class="btn btn-sm btn-danger btn-delete-user"
+                    [disabled]="catch.isDeleting">
+                    <span *ngIf="catch.isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <span *ngIf="!catch.isDeleting">Delete</span>
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="!catches">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>

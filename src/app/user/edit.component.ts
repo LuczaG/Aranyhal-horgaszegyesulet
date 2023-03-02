@@ -5,14 +5,13 @@ import { AccountService, AlertService } from '@app/_services';
 import { first } from 'rxjs/operators';
 
 @Component({
-  selector: 'app-add-edit',
-  templateUrl: './add-edit.component.html',
-  styleUrls: ['./add-edit.component.css']
+  selector: 'app-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.css']
 })
-export class AddEditComponent implements OnInit {
+export class EditComponent implements OnInit {
   form: FormGroup;
   id: string;
-  title: string;
   loading = false;
   submitting = false;
   submitted = false;
@@ -36,10 +35,8 @@ export class AddEditComponent implements OnInit {
       password: ["", [Validators.minLength(6), ...(this.id ? [] : [Validators.required])]]
     });
 
-    this.title = 'Add User';
     if (this.id) {
       //edit mode
-      this.title = 'Edit User';
       this.loading = true;
       this.accountService.getById(this.id)
         .pipe(first())
@@ -55,28 +52,23 @@ export class AddEditComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    
+
     this.alertService.clear();
+
     //stop
     if (this.form.invalid) { return; }
 
     this.submitting = true;
-    this.saveUser().pipe(first())
+    this.accountService.update(this.id, this.form.value).pipe(first())
       .subscribe({
         next: () => {
           this.alertService.success('User Saved', { keepAfterRouteChange: true });
-          this.router.navigateByUrl('/users');
+          this.router.navigateByUrl('/user/dashboard');
         },
         error: error => {
           this.alertService.error(error);
           this.submitting = false;
         }
-    })
-  }
-
-  private saveUser() {
-    return this.id 
-    ? this.accountService.update(this.id, this.form.value)
-    : this.accountService.register(this.form.value);
+      })
   }
 }

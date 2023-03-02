@@ -1,0 +1,49 @@
+<h1>{{title}}</h1>
+<form *ngIf="!loading" [formGroup]="form" (ngSubmit)="onSubmit();">
+    <div class="row">
+        <div class="col mb-3">
+            <label class="form-label">Év</label>
+            <input type="text" formControlName="ev" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.ev.errors }">
+            <div class="invalid-feedback" *ngIf="submitted && f.ev.errors">
+                <div *ngIf="f.ev.errors.required">Év kitöltése kötelező</div>
+            </div>    
+        </div>
+        <div class="col mb-3">
+            <label class="form-label">Ponty</label>
+            <input type="text" formControlName="ponty" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.ponty.errors }">
+            <div class="invalid-feedback" *ngIf="submitted && f.ponty.errors">
+                <div *ngIf="f.ponty.errors.required">Ponty kitöltése kötelező</div>
+            </div>    
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <label class="form-label">Süllő</label>
+            <input type="text" formControlName="sullo" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.sullo.errors }">
+            <div class="invalid-feedback" *ngIf="submitted && f.sullo.errors">
+                <div *ngIf="f.sullo.errors.required">Süllő kitöltése kötelező</div>
+            </div>    
+        </div>
+        <div class="col mb-3">
+            <label class="form-label">Harcsa</label>
+            <input type="text" formControlName="harcsa" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.harcsa.errors }">
+            <div class="invalid-feedback" *ngIf="submitted && f.harcsa.errors">
+                <div *ngIf="f.harcsa.errors.required">Harcsa kitöltése kötelező</div>
+            </div>    
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-success" [disabled]="submitting">
+                <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
+                Mentés
+            </button>
+            <a routerLink="/catches" class="btn btn-link">Vissza</a>
+        </div>
+    </div>
+</form>
+<div *ngIf="loading" class="text-center m-5">
+    <span class="spinner-border spinner-border-lg align-center"></span>
+</div>

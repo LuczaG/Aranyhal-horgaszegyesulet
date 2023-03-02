@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { User } from '@app/_models/user';
 import { environment } from '@environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map} from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +21,9 @@ export class AccountService {
   public get userValue() {
     return this.userSubject.value;
   }
-  
+
   login(username: string, password: string) {
-    return this.http.post<User>(`${environment.apiUrl}/users/authenticate`, {username, password})
+    return this.http.post<User>(`${environment.apiUrl}/users/authenticate`, { username, password })
       .pipe(map(user => {
         localStorage.setItem('user', JSON.stringify(user));
         this.userSubject.next(user);
@@ -34,30 +34,26 @@ export class AccountService {
   logout() {
     localStorage.removeItem('user');
     this.userSubject.next(null);
-    this.router.navigate(['/account/login']);
+    this.router.navigate(['/home']);
   }
 
   register(user: User) {
     return this.http.post(`${environment.apiUrl}/users/register`, user);
   }
 
-  getAll() {
-    return this.http.get<User[]>(`${environment.apiUrl}/users`);
-  }
-
   getById(id: string) {
-    return this.http.get<User>(`${environment.apiUrl}/users/${id}`);
+    return this.http.get<User>(`${environment.apiUrl}/user/${id}`);
   }
 
   update(id: string, params: any) {
-    return this.http.put(`${environment.apiUrl}/users/${id}`, params)
+    return this.http.put(`${environment.apiUrl}/user/${id}`, params)
       .pipe(map(x => {
         // tárolt felhsználó módosítása, ha a saját adatainkat módosítjuk.
         if (id == this.userValue.id) {
           const user = { ...this.userValue, ...params };
           localStorage.setItem('user', JSON.stringify(user));
 
-        // frissített felhasználó közzététele a feliratkozók számára
+          // frissített felhasználó közzététele a feliratkozók számára
           this.userSubject.next(user);
         }
         return x;
@@ -65,7 +61,7 @@ export class AccountService {
   }
 
   delete(id: string) {
-    return this.http.delete(`${environment.apiUrl}/users/${id}`)
+    return this.http.delete(`${environment.apiUrl}/user/${id}`)
       .pipe(map(x => {
         // automatikus kijelentkeztetés, ha a felhasználó saját adatait törölte.
         if (id == this.userValue.id) {

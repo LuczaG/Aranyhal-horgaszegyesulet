@@ -20,7 +20,7 @@
     </div>
     <div class="row">
         <div class="col mb-3">
-            <label class="form-label">Felhasználónév szükséges</label>
+            <label class="form-label">Felhasználónév</label>
             <input type="text" formControlName="username" class="form-control"
                 [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
             <div class="invalid-feedback" *ngIf="submitted && f.username.errors">
@@ -43,7 +43,7 @@
                 <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
                 Mentés
             </button>
-            <a routerLink="/users" class="cancel">Mégse</a>
+            <a routerLink="/dashboard" class="cancel">Mégse</a>
         </div>
     </div>
 </form>

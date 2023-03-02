@@ -7,6 +7,9 @@ import { delay, dematerialize, materialize } from 'rxjs/operators';
 const userKey = 'users';
 let users: any[] = JSON.parse(localStorage.getItem(userKey)) || [];
 
+const catchesKey = 'catches';
+let catches: any[] = JSON.parse(localStorage.getItem(catchesKey)) || [];
+
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -20,14 +23,22 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return authenticate();
                 case url.endsWith('/users/register') && method === 'POST':
                     return register();
-                case url.endsWith('/users') && method === 'GET':
-                    return getUsers();
-                case url.match(/\/users\/\d+$/) && method === 'GET':
+                case url.match(/\/user\/\d+$/) && method === 'GET':
                     return getUserById();
-                case url.match(/\/users\/\d+$/) && method === 'PUT':
+                case url.match(/\/user\/\d+$/) && method === 'PUT':
                     return updateUser();
-                case url.match(/\/users\/\d+$/) && method === 'DELETE':
+                case url.match(/\/user\/\d+$/) && method === 'DELETE':
                     return deleteUser();
+                case url.endsWith('/catches/add') && method === 'POST':
+                    return addCatch();
+                case url.endsWith('/catches') && method === 'GET':
+                    return getCatches();
+                case url.match(/\/catches\/\d+$/) && method === 'GET':
+                    return getCatchById();
+                case url.match(/\/catches\/\d+$/) && method === 'PUT':
+                    return updateCatch();
+                case url.match(/\/catches\/\d+$/) && method === 'DELETE':
+                    return deleteCatch();
                 default:
                     // a fent nem kezelt kérések továbbítása.
                     return next.handle(request);
@@ -57,12 +68,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             return ok();
         }
 
-        function getUsers() {
-            if (!isLoggedIn()) return unauthorized();
-
-            return ok(users.map(x => basicDetails(x)));
-        }
-
         function getUserById() {
             if (!isLoggedIn()) return unauthorized();
 
@@ -77,7 +82,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             let user = users.find(x => x.id === idFromUrl());
 
             // Csak akkor módosítjuk a jelszót, ha van benne érték.
-            if (params.password) {
+            if (!params.password) {
                 delete params.password;
             }
 
@@ -92,6 +97,48 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
             users = users.filter(x => x.id !== idFromUrl());
             localStorage.setItem(userKey, JSON.stringify(users));
+
+            return ok();
+        }
+
+        function addCatch() {
+            const fogas = body;
+
+            fogas.id = catches.length ? Math.max(...catches.map(x => x.id)) + 1 : 1;
+            catches.push(fogas);
+            localStorage.setItem(catchesKey, JSON.stringify(catches));
+            return ok();
+        }
+
+        function getCatches() {
+            if (!isLoggedIn()) return unauthorized();
+            return ok(catches.map(x => basicCatchDetails(x)));
+        }
+
+        function getCatchById() {
+            if (!isLoggedIn()) return unauthorized();
+
+            const fogas = catches.find(x => x.id === idFromUrl());
+            return ok(basicDetails(fogas));
+        }
+
+        function updateCatch() {
+            if (!isLoggedIn()) return unauthorized();
+
+            let params = body;
+            let fogas = catches.find(x => x.id === idFromUrl());
+
+            Object.assign(fogas, params);
+            localStorage.setItem(catchesKey, JSON.stringify(catches));
+
+            return ok();
+        }
+
+        function deleteCatch() {
+            if (!isLoggedIn()) return unauthorized();
+
+            catches = catches.filter(x => x.id !== idFromUrl());
+            localStorage.setItem(catchesKey, JSON.stringify(catches));
 
             return ok();
         }
@@ -115,6 +162,11 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function basicDetails(user: any) {
             const { id, username, firstName, lastName } = user;
             return { id, username, firstName, lastName };
+        }
+
+        function basicCatchDetails(fogas: any) {
+            const { id, ev, ponty, sullo, harcsa } = fogas;
+            return { id, ev, ponty, sullo, harcsa };
         }
 
         function isLoggedIn() {

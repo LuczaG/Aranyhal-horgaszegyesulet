@@ -1,24 +1,24 @@
 <nav class="navbar navbar-expand navbar-light px-3" style="background: #009459;">
-    <div class="navbar-nav">
-      <a class="navbar-brand" href="#">
-        <img src="./assets/img/aranyhal.png" alt="Aranyahal Horgászegyesület" style="width: 50px;">
-      </a>
-      <a class="nav-item nav-link" routerLink="/" routerLinkActive="active"
-         [routerLinkActiveOptions]="{exact: true}">
-         Főoldal
-      </a>
-      <a class="nav-item nav-link" routerLink="/" routerLinkActive="active">
-        Fogási Napló
-      </a>
-      <a class="nav-item nav-link" routerLink="/users" routerLinkActive="active">
-        Felhasználók
-      </a>
-      <a class="nav-item nav-link" *ngIf="!user" routerLink="/login" routerLinkActive="active">
-        Bejelentkezés
-      </a>
-      <a class="nav-item nav-link username" *ngIf="user" >
-        {{user.username}}
-      </a>
-      <!-- <button class="btn btn-link nav-item nav-link" (click)="logout();">kijelentkezés</button> -->
-    </div>
-  </nav>
+  <div class="navbar-nav">
+    <a class="navbar-brand" href="#">
+      <img src="../../../assets/img/aranyhal.png" alt="Aranyahal Horgászegyesület" style="width: 50px;">
+    </a>
+    <a class="nav-item nav-link links" routerLink="/home" routerLinkActive="active"
+      [routerLinkActiveOptions]="{exact: true}" *ngIf="!user">
+      Főoldal
+    </a>
+    <a class="nav-item nav-link links" routerLink="/user/dashboard" routerLinkActive="active" *ngIf="user">
+      Admin Főoldal
+    </a>
+    <a class="nav-item nav-link links" routerLink="/catches" routerLinkActive="active" *ngIf="user">
+      Fogási Napló
+    </a>
+    <a class="nav-item nav-link links" routerLink="/account/login" routerLinkActive="active" *ngIf="!user">
+      Bejelentkezés
+    </a>
+    <a class="nav-item nav-link links" routerLink="/user/edit/{{user.id}}" routerLinkActive="active" *ngIf="user">
+      Felhasználó: {{user.username}}
+    </a>
+    <button class="btn btn-link nav-item nav-link" (click)="logout();" *ngIf="user">kijelentkezés</button>
+  </div>
+</nav>

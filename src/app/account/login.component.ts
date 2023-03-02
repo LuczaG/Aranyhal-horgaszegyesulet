@@ -45,10 +45,7 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe({
         next: () => {
-          // Visszaküldési URL kiszerdése, ha létezik
-          // vagy a kezdőlapra továbbítunk.
-          const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-          this.router.navigateByUrl(returnUrl);
+          this.router.navigateByUrl('/user/dashboard');
         },
         error: error => {
           this.alertService.error(error);

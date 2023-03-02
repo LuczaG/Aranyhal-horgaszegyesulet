@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { User } from './_models';
-import { AccountService } from './_services';
+import { User } from '@app/_models';
+import { AccountService } from '@app/_services';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ import { AccountService } from './_services';
 export class AppComponent {
   user: User;
 
-  constructor(private accountService: AccountService) { 
+  constructor(private accountService: AccountService) {
     this.accountService.user.subscribe(x => this.user = x);
   }
 

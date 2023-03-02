@@ -17,7 +17,6 @@ export class AlertComponent implements OnInit, OnDestroy {
     alertSubscription: Subscription;
     routeSubscription: Subscription;
 
-
     constructor(private router: Router, private alertService: AlertService) { }
 
     ngOnInit(): void {
@@ -43,8 +42,8 @@ export class AlertComponent implements OnInit, OnDestroy {
                 }
             });
 
-            // helyváltozásnál ürítsük ki az alerteket
-            this.routeSubscription = this.router.events.subscribe(event => {
+        // helyváltozásnál ürítsük ki az alerteket
+        this.routeSubscription = this.router.events.subscribe(event => {
             if (event instanceof NavigationStart) {
                 this.alertService.clear(this.id);
             }
@@ -76,10 +75,10 @@ export class AlertComponent implements OnInit, OnDestroy {
         }
     }
 
-    cssClass(alert: Alert){
+    cssClass(alert: Alert) {
         if (!alert) return "";
 
-        const classes = ['alert', 'alert-dismissible', 'mt-4', 'container' ];
+        const classes = ['alert', 'alert-dismissible', 'mt-4', 'container'];
 
         const alertTypeClass = {
             [AlertType.Success]: 'alert-success',

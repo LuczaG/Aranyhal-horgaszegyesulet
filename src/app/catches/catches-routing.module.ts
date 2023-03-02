@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddEditComponent } from './add-edit.component';
-import { LayoutComponent } from './layout.component';
-import { ListComponent } from './list.component';
+import { LayoutComponent } from '@app/catches/layout.component';
+import { AddEditComponent } from '@app/catches/add-edit.component';
+import { ListComponent } from '@app/catches/list.component';
 
 const routes: Routes = [
   {
@@ -19,4 +19,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class UsersRoutingModule { }
+export class CatchesRoutingModule { }

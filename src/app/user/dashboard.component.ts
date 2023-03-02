@@ -3,15 +3,14 @@ import { User } from '@app/_models';
 import { AccountService } from '@app/_services';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.css']
 })
-export class HomeComponent {
+export class DashboardComponent {
   user: User;
 
   constructor(private accountService: AccountService) {
     this.user = this.accountService.userValue;
   }
-
 }

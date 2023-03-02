@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="mb-3">
-                <input type="text" formControlName="username" class="form-control"placeholder="Felhasználónév"
+                <input type="text" formControlName="username" class="form-control" placeholder="Felhasználónév"
                     [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
                 <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
                     <div *ngIf="f.username.errors.required">Felhasználónév szükséges</div>
