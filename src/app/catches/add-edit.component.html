@@ -7,7 +7,7 @@
                 [ngClass]="{ 'is-invalid': submitted && f.ev.errors }">
             <div class="invalid-feedback" *ngIf="submitted && f.ev.errors">
                 <div *ngIf="f.ev.errors.required">Év kitöltése kötelező</div>
-            </div>    
+            </div>
         </div>
         <div class="col mb-3">
             <label class="form-label">Ponty</label>
@@ -15,7 +15,7 @@
                 [ngClass]="{ 'is-invalid': submitted && f.ponty.errors }">
             <div class="invalid-feedback" *ngIf="submitted && f.ponty.errors">
                 <div *ngIf="f.ponty.errors.required">Ponty kitöltése kötelező</div>
-            </div>    
+            </div>
         </div>
     </div>
     <div class="row">
@@ -25,7 +25,7 @@
                 [ngClass]="{ 'is-invalid': submitted && f.sullo.errors }">
             <div class="invalid-feedback" *ngIf="submitted && f.sullo.errors">
                 <div *ngIf="f.sullo.errors.required">Süllő kitöltése kötelező</div>
-            </div>    
+            </div>
         </div>
         <div class="col mb-3">
             <label class="form-label">Harcsa</label>
@@ -33,7 +33,7 @@
                 [ngClass]="{ 'is-invalid': submitted && f.harcsa.errors }">
             <div class="invalid-feedback" *ngIf="submitted && f.harcsa.errors">
                 <div *ngIf="f.harcsa.errors.required">Harcsa kitöltése kötelező</div>
-            </div>    
+            </div>
         </div>
         <div class="mb-3">
             <button class="btn btn-success" [disabled]="submitting">

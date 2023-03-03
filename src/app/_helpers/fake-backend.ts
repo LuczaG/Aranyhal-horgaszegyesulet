@@ -3,10 +3,11 @@ import { HttpInterceptor, HttpEvent, HttpHandler, HttpRequest, HttpResponse, HTT
 import { Observable, of, throwError } from 'rxjs';
 import { delay, dematerialize, materialize } from 'rxjs/operators';
 
-// tömb a localStorage-ban regisztrált felhasználók számára
+// tömb a localStorage-ban a regisztrált felhasználók számára
 const userKey = 'users';
 let users: any[] = JSON.parse(localStorage.getItem(userKey)) || [];
 
+// tömb a localStorage-ban a fogások számára
 const catchesKey = 'catches';
 let catches: any[] = JSON.parse(localStorage.getItem(catchesKey)) || [];
 
@@ -27,8 +28,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return getUserById();
                 case url.match(/\/user\/\d+$/) && method === 'PUT':
                     return updateUser();
-                case url.match(/\/user\/\d+$/) && method === 'DELETE':
-                    return deleteUser();
                 case url.endsWith('/catches/add') && method === 'POST':
                     return addCatch();
                 case url.endsWith('/catches') && method === 'GET':
@@ -52,7 +51,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             return ok({
                 ...basicDetails(user),
                 token: 'fake-jwt-token'
-            })
+            });
         }
 
         function register() {
@@ -71,8 +70,18 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function getUserById() {
             if (!isLoggedIn()) return unauthorized();
 
+            const loggedInUser = JSON.parse(localStorage.getItem('user'));
             const user = users.find(x => x.id === idFromUrl());
-            return ok(basicDetails(user));
+
+            if (user?.id) {
+                if (loggedInUser.id !== user.id) {
+                    return forbidden();
+                } else {
+                    return ok(basicDetails(user));
+                }
+            } else {
+                return forbidden();
+            }
         }
 
         function updateUser() {
@@ -92,19 +101,15 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             return ok();
         }
 
-        function deleteUser() {
+        function addCatch() {
             if (!isLoggedIn()) return unauthorized();
 
-            users = users.filter(x => x.id !== idFromUrl());
-            localStorage.setItem(userKey, JSON.stringify(users));
-
-            return ok();
-        }
-
-        function addCatch() {
             const fogas = body;
+            const loggedInUser = JSON.parse(localStorage.getItem('user'));
 
             fogas.id = catches.length ? Math.max(...catches.map(x => x.id)) + 1 : 1;
+            fogas.userId = loggedInUser.id;
+
             catches.push(fogas);
             localStorage.setItem(catchesKey, JSON.stringify(catches));
             return ok();
@@ -112,14 +117,18 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         function getCatches() {
             if (!isLoggedIn()) return unauthorized();
-            return ok(catches.map(x => basicCatchDetails(x)));
+
+            const loggedInUser = JSON.parse(localStorage.getItem('user'));
+            catches.map(x => basicCatchDetails(x))
+
+            return ok(catches.filter(x => x.userId === loggedInUser.id));
         }
 
         function getCatchById() {
             if (!isLoggedIn()) return unauthorized();
 
             const fogas = catches.find(x => x.id === idFromUrl());
-            return ok(basicDetails(fogas));
+            return ok(basicCatchDetails(fogas));
         }
 
         function updateCatch() {
@@ -165,8 +174,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         }
 
         function basicCatchDetails(fogas: any) {
-            const { id, ev, ponty, sullo, harcsa } = fogas;
-            return { id, ev, ponty, sullo, harcsa };
+            const { id, userId, ev, ponty, sullo, harcsa } = fogas;
+            return { id, userId, ev, ponty, sullo, harcsa };
         }
 
         function isLoggedIn() {
@@ -178,8 +187,13 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 .pipe(materialize(), delay(500), dematerialize());
         }
 
+        function forbidden() {
+            return throwError(() => ({ status: 403, error: { message: 'Forbidden' } }))
+                .pipe(materialize(), delay(500), dematerialize());
+        }
+
         function idFromUrl() {
-            const urlParts = url.split('/'); // Ez lesz belőle -> ["users", "edit", "1"]
+            const urlParts = url.split('/'); // Ez lesz belőle -> ["users / catches", "edit", "1"]
             return parseInt(urlParts[urlParts.length - 1]);
         }
     }

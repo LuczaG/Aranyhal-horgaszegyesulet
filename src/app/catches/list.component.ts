@@ -16,10 +16,10 @@ export class ListComponent implements OnInit {
       .subscribe(catches => this.catches = catches);
   }
 
-  deleteUser(id: string) {
-    const user = this.catches.find(x => x.id === id);
-    confirm("Are you sure, you want to delete this user?")
-      ? user.isDeleting = true && this.catchesService.delete(id)
+  deleteCatch(id: string) {
+    const fogas = this.catches.find(x => x.id === id);
+    confirm("Are you sure, you want to delete this catch?")
+      ? fogas.isDeleting = true && this.catchesService.delete(id)
         .pipe(first())
         .subscribe(() => this.catches = this.catches.filter(x => x.id !== id))
       : "";

@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { Alert, AlertType } from '@app/_models';
-import { AlertService } from '@app/_services/alert.service';
+import { AlertService } from '@app/_services';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -62,7 +62,7 @@ export class AlertComponent implements OnInit, OnDestroy {
         if (!this.alerts.includes(alert)) return;
 
         if (this.fade) {
-            //fade out
+            // fade out
             alert.fade = true;
 
             // alert eltávolítása a fade out után

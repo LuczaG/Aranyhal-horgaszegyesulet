@@ -8,7 +8,6 @@ import { AccountService } from '@app/_services';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
   user: User;
 
   constructor(private accountService: AccountService) {

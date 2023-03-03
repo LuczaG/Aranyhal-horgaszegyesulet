@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '@app/_models/user';
+import { AlertService } from '@app/_services';
 import { environment } from '@environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -13,7 +14,7 @@ export class AccountService {
   private userSubject: BehaviorSubject<User>;
   public user: Observable<User>;
 
-  constructor(private router: Router, private http: HttpClient) {
+  constructor(private router: Router, private http: HttpClient, private alertService: AlertService) {
     this.userSubject = new BehaviorSubject(JSON.parse(localStorage.getItem('user')));
     this.user = this.userSubject.asObservable();
   }
@@ -37,6 +38,11 @@ export class AccountService {
     this.router.navigate(['/home']);
   }
 
+  forbidden() {
+    this.alertService.error('A kért művelethez nincs jogosultságod!', { keepAfterRouteChange: true })
+    this.router.navigate(['/user/dashboard']);
+  }
+
   register(user: User) {
     return this.http.post(`${environment.apiUrl}/users/register`, user);
   }
@@ -55,17 +61,6 @@ export class AccountService {
 
           // frissített felhasználó közzététele a feliratkozók számára
           this.userSubject.next(user);
-        }
-        return x;
-      }));
-  }
-
-  delete(id: string) {
-    return this.http.delete(`${environment.apiUrl}/user/${id}`)
-      .pipe(map(x => {
-        // automatikus kijelentkeztetés, ha a felhasználó saját adatait törölte.
-        if (id == this.userValue.id) {
-          this.logout;
         }
         return x;
       }));

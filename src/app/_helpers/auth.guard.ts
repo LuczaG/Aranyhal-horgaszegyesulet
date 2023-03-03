@@ -6,8 +6,7 @@ import { AccountService } from '@app/_services';
     providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-    constructor(private router: Router,
-                private accountService: AccountService) { }
+    constructor(private router: Router, private accountService: AccountService) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         const user = this.accountService.userValue;
