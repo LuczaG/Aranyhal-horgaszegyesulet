@@ -5,7 +5,8 @@ import { AlertService, CatchesService } from '@app/_services';
 import { first } from 'rxjs/operators';
 
 @Component({
-  templateUrl: './add-edit.component.html'
+  templateUrl: './add-edit.component.html',
+  styleUrls: ['./add-edit.component.css'] 
 })
 export class AddEditComponent implements OnInit {
   form: FormGroup;

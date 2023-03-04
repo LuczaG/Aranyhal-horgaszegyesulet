@@ -1,18 +1,14 @@
-.card {
-    margin: 0 auto;
-    float: none;
+h2::after {
+    content: '';
     display: flex;
-    text-align: center;
-    max-width: 300px;
-}
-
-.card-header {
-    background: #009459;
-    color: #fff;
+    background-color: #009459;
+    width: 100px;
+    height: 2px;
+    margin: 20px;
 }
 
 .login {
-    margin-right: 10px;
+    margin-right: 15px;
     padding: 8px;
     background: #009459;
     color: #fff;
@@ -20,8 +16,57 @@
     border-radius: 5px;
 }
 
+.login:hover {
+    margin-right: 15px;
+    padding: 8px;
+    background: #00643c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
 .reg {
-    margin-left: 10px;
+    padding: 9px;
+    background: #fff;
     color: #009459;
+    border-radius: 5px;
     text-decoration: none;
+}
+
+.reg:hover {
+    padding: 9px;
+    background: #00643c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 30px;
+    background: #009459;
+    color: #fff;
+}
+
+.footer-heading {
+    margin-top: 20px;
+}
+
+.footer-img {
+    margin: 15px 10px;
+    max-width: 35px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.footer-text {
+    margin-bottom: 20px;
 }

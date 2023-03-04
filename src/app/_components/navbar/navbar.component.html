@@ -17,8 +17,11 @@
       Bejelentkezés
     </a>
     <a class="nav-item nav-link links" routerLink="/user/edit/{{user.id}}" routerLinkActive="active" *ngIf="user">
-      Felhasználó: {{user.username}}
+      {{user.username}}
+      <img src="../../../assets/img/person.png" alt="felhasználó">
     </a>
-    <button class="btn btn-link nav-item nav-link" (click)="logout();" *ngIf="user">kijelentkezés</button>
+    <button class="btn btn-link nav-item nav-link" (click)="logout();" *ngIf="user">
+      <img src="../../../assets/img/log-out.png" alt="kijelentkezés">
+    </button>
   </div>
 </nav>

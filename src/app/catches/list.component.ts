@@ -3,12 +3,14 @@ import { CatchesService } from '@app/_services';
 import { first } from 'rxjs/operators';
 
 @Component({
-  templateUrl: './list.component.html'
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.css']
+
 })
 export class ListComponent implements OnInit {
   catches: any[];
 
-  constructor(private catchesService: CatchesService) { }
+  constructor(private catchesService: CatchesService,) { }
 
   ngOnInit(): void {
     this.catchesService.getAll()
@@ -18,7 +20,7 @@ export class ListComponent implements OnInit {
 
   deleteCatch(id: string) {
     const fogas = this.catches.find(x => x.id === id);
-    confirm("Are you sure, you want to delete this catch?")
+    confirm("Biztosan törölni szeretnéd a fogásod?")
       ? fogas.isDeleting = true && this.catchesService.delete(id)
         .pipe(first())
         .subscribe(() => this.catches = this.catches.filter(x => x.id !== id))

@@ -36,14 +36,36 @@
             </div>
         </div>
         <div class="mb-3">
-            <button class="btn btn-success" [disabled]="submitting">
+            <button class="btn" [disabled]="submitting" id="save">
                 <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
                 Mentés
             </button>
-            <a routerLink="/catches" class="btn btn-link">Vissza</a>
+            <a routerLink="/catches" class="btn btn-link" id="back">Vissza</a>
         </div>
     </div>
 </form>
 <div *ngIf="loading" class="text-center m-5">
     <span class="spinner-border spinner-border-lg align-center"></span>
 </div>
+
+<!-- footer -->
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h4 class="footer-heading">Social Media elérhetőségeink:</h4>
+                <a href="https://www.facebook.com/" title="facebook" target="_blank" data-bs-toggle="tooltip"
+                    data-bs-title="facebook">
+                    <img src="../../../assets/img/logo-facebook.png" alt="facebook" class="footer-img">
+                </a>
+                <a href="https://www.instagram.com/" title="twitter" target="_blank">
+                    <img src="../../../assets/img/logo-instagram.png" alt="instagram" class="footer-img">
+                </a>
+                <a href="https://www.twitter.com/" title="twitter" target="_blank">
+                    <img src="../../../assets/img/logo-twitter.png" alt="twitter" class="footer-img">
+                </a>
+                <p class="footer-text">© Aranyhal Horgászegyesület 2023 minden jog fentartva!</p>
+            </div>
+        </div>
+    </div>
+</footer>

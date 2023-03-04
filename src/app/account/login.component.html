@@ -1,28 +1,49 @@
-<div class="card">
-    <h4 class="card-header">Bejelentkezés</h4>
-    <div class="card-body">
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <div class="mb-3">
-                <input type="text" formControlName="username" class="form-control" placeholder="Felhasználónév"
-                    [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
-                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                    <div *ngIf="f.username.errors.required">Felhasználónév szükséges</div>
-                </div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h2>Bejelentkezés</h2>
+    <div class="row">
+        <div class="col mb-3">
+            <label class="form-label">Felhasználónév</label>
+            <input type="text" formControlName="username" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.username.errors }">
+            <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                <div *ngIf="f.username.errors.required">Felhasználónév szükséges</div>
             </div>
-            <div class="mb-3">
-                <input type="password" formControlName="password" class="form-control" placeholder="Jelszó"
-                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
-                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                    <div *ngIf="f.password.errors.required">Jelszó szükséges</div>
-                </div>
+        </div>
+        <div class="col mb-3">
+            <label class="form-label">Jelszó</label>
+            <input type="password" formControlName="password" class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                <div *ngIf="f.password.errors.required">Jelszó szükséges</div>
             </div>
-            <div>
-                <button [disabled]="loading" class="login">
-                    <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
-                    Bejelentkezés
-                </button>
-                <a routerLink="../register" class="reg">Regisztráció</a>
-            </div>
-        </form>
+        </div>
+        <div><button [disabled]="loading" class="login">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+                Bejelentkezés
+            </button>
+            <a routerLink="../register" class="reg">Regisztráció</a>
+        </div>
     </div>
-</div>
+</form>
+
+<!-- footer -->
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h4 class="footer-heading">Social Media elérhetőségeink:</h4>
+                <a href="https://www.facebook.com/" title="facebook" target="_blank" data-bs-toggle="tooltip"
+                    data-bs-title="facebook">
+                    <img src="../../../assets/img/logo-facebook.png" alt="facebook" class="footer-img">
+                </a>
+                <a href="https://www.instagram.com/" title="twitter" target="_blank">
+                    <img src="../../../assets/img/logo-instagram.png" alt="instagram" class="footer-img">
+                </a>
+                <a href="https://www.twitter.com/" title="twitter" target="_blank">
+                    <img src="../../../assets/img/logo-twitter.png" alt="twitter" class="footer-img">
+                </a>
+                <p class="footer-text">© Aranyhal Horgászegyesület 2023 minden jog fentartva!</p>
+            </div>
+        </div>
+    </div>
+</footer>

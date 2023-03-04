@@ -62,7 +62,7 @@ export class EditComponent implements OnInit {
     this.accountService.update(this.id, this.form.value).pipe(first())
       .subscribe({
         next: () => {
-          this.alertService.success('User Saved', { keepAfterRouteChange: true });
+          this.alertService.success('A felhasználóneved megváltozott', { keepAfterRouteChange: true });
           this.router.navigateByUrl('/user/dashboard');
         },
         error: error => {

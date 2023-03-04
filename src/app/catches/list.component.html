@@ -1,5 +1,5 @@
 <h1>Fogási napló</h1>
-<a routerLink="add" class="btn btn-sm btn-success mb-2">Fogások adminisztrálása</a>
+<a routerLink="add" class="btn btn-sm mb-2" id="admin">Fogások bevitele</a>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -17,11 +17,11 @@
             <td>{{catch.sullo}}</td>
             <td>{{catch.harcsa}}</td>
             <td style="white-space: nowrap;">
-                <a routerLink="edit/{{catch.id}}" class="btn btn-sm btn-primary me-1">Edit</a>
-                <button (click)="deleteCatch(catch.id)" class="btn btn-sm btn-danger btn-delete-user"
+                <a routerLink="edit/{{catch.id}}" class="btn btn-sm me-1" id="modify">Módosítás</a>
+                <button (click)="deleteCatch(catch.id)" class="btn btn-sm btn-delete-user" id="delete"
                     [disabled]="catch.isDeleting">
-                    <span *ngIf="catch.isDeleting" class="spinner-border spinner-border-sm"></span>
-                    <span *ngIf="!catch.isDeleting">Delete</span>
+                    <span *ngIf="catch.isDeleting" class="spinner-border spinner-border-sm" ></span>
+                    <span *ngIf="!catch.isDeleting">Törlés</span>
                 </button>
             </td>
         </tr>
@@ -32,3 +32,25 @@
         </tr>
     </tbody>
 </table>
+
+<!-- footer -->
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h4 class="footer-heading">Social Media elérhetőségeink:</h4>
+                <a href="https://www.facebook.com/" title="facebook" target="_blank" data-bs-toggle="tooltip"
+                    data-bs-title="facebook">
+                    <img src="../../../assets/img/logo-facebook.png" alt="facebook" class="footer-img">
+                </a>
+                <a href="https://www.instagram.com/" title="twitter" target="_blank">
+                    <img src="../../../assets/img/logo-instagram.png" alt="instagram" class="footer-img">
+                </a>
+                <a href="https://www.twitter.com/" title="twitter" target="_blank">
+                    <img src="../../../assets/img/logo-twitter.png" alt="twitter" class="footer-img">
+                </a>
+                <p class="footer-text">© Aranyhal Horgászegyesület 2023 minden jog fentartva!</p>
+            </div>
+        </div>
+    </div>
+</footer>
