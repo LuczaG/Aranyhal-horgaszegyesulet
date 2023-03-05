@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CatchesService } from '@app/_services';
+import { AccountService, CatchesService } from '@app/_services';
 import { first } from 'rxjs/operators';
+import { User } from '@app/_models';
 
 @Component({
   templateUrl: './list.component.html',
@@ -9,8 +10,12 @@ import { first } from 'rxjs/operators';
 })
 export class ListComponent implements OnInit {
   catches: any[];
+  user: User;
 
-  constructor(private catchesService: CatchesService,) { }
+  constructor(
+    private catchesService: CatchesService,
+    private accountService: AccountService, 
+    ) { this.user = this.accountService.userValue; }
 
   ngOnInit(): void {
     this.catchesService.getAll()

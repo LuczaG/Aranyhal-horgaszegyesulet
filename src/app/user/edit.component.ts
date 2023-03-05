@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService, AlertService } from '@app/_services';
 import { first } from 'rxjs/operators';
+import { User } from '@app/_models';
 
 @Component({
   selector: 'app-edit',
@@ -15,6 +16,8 @@ export class EditComponent implements OnInit {
   loading = false;
   submitting = false;
   submitted = false;
+  user: User;
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -22,7 +25,7 @@ export class EditComponent implements OnInit {
     private router: Router,
     private accountService: AccountService,
     private alertService: AlertService
-  ) { }
+  ) { this.user = this.accountService.userValue; }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];

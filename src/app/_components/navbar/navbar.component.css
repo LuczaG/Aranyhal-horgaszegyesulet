@@ -1,3 +1,51 @@
+.navbar-brand {
+    margin-left: 20px;
+}
+
+.navbar-nav {
+    text-align: right;
+}
+
+.navbar-nav img {
+    text-align: right;
+}
+
 .links {
     margin-top: 0.18em;
+    font-size: 20px;
+    font-weight:500;
+    color: white;
+}
+
+.nav-item-right {
+    margin-right: 30px;
+    text-align: right;
+}
+
+#person {
+    height: 30px;
+    padding-bottom: 10px;
+}
+
+.btn {
+    margin-top: 2px;
+    height: 40px;
+}
+
+#log {
+    height: 37px;
+    padding-bottom: 10px;
+}
+
+.navbar-toggler {
+    background: none;
+}
+
+.navbar-toggler .navbar-toggler-icon {
+    background-image: 
+    url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.navbar-toggler {
+    border: 1px solid #fff;
 }
