@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg" style="background: #009459;">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-      <img src="../../../assets/img/aranyhal.png" alt="Aranyahal Horgászegyesület" style="height: 40px;">
+      <img src="./assets/img/aranyhal.png" alt="Aranyahal Horgászegyesület" style="height: 40px;">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,12 +35,12 @@
         <li class="nav-item">
           <a class="nav-item nav-link links" routerLink="/user/edit/{{user.id}}" routerLinkActive="active" *ngIf="user">
             {{user.username}}
-            <img src="../../../assets/img/person.png" alt="felhasználó" id="person">
+            <img src="./assets/img/person.png" alt="felhasználó" id="person">
           </a>
         </li>
         <li class="nav-item-right">
           <button class="btn btn-link nav-item nav-link" (click)="logout();" *ngIf="user">
-            <img src="../../../assets/img/log-out.png" alt="kijelentkezés" id="log">
+            <img src="./assets/img/log-out.png" alt="kijelentkezés" id="log">
           </button>
         </li>
       </ul>
