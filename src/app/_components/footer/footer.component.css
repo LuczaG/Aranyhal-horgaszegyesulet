@@ -1,0 +1,14 @@
+.footer-heading {
+    margin-top: 20px;
+}
+
+.footer-img {
+    margin: 15px 10px;
+    max-width: 35px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.footer-text {
+    margin-bottom: 20px;
+}

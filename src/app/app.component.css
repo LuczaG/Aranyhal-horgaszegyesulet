@@ -1,0 +1,15 @@
+header {
+    min-height: 50px;
+}
+
+article {
+    flex: 1;
+}
+
+footer {
+    width: 100%;
+    min-height: 50px;
+    margin-top: 30px;
+    background: #009459;
+    color: #fff;
+}

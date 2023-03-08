@@ -30,31 +30,3 @@ p a:hover {
     color: #fff;
     transition: all 0.3s;
 }
-
-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    margin-top: 30px;
-    background: #009459;
-    color: #fff;
-}
-
-.footer-heading {
-    margin-top: 20px;
-}
-
-.footer-img {
-    margin: 15px 10px;
-    max-width: 35px;
-    color: #fff;
-    cursor: pointer;
-}
-
-.footer-text {
-    margin-bottom: 20px;
-}

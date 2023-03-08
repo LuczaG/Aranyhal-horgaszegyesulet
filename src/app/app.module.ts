@@ -6,14 +6,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '@app/app-routing.module';
 import { AppComponent } from '@app/app.component';
 import { JwtInterceptor, ErrorInterceptor, fakeBackendProvider } from '@app/_helpers';
-import { AlertComponent, HomeComponent, NavbarComponent } from '@app/_components';
+import { AlertComponent, FooterComponent, HomeComponent, NavbarComponent } from '@app/_components';
 
 @NgModule({
   declarations: [
     AppComponent,
     AlertComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
